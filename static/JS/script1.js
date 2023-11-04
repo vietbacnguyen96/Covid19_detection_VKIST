@@ -55,7 +55,6 @@ App.init = function () {
   function uploadImage() {
     // $(".output").css({'display': 'inline-block'});
     const url = "getFile";
-    //console.log(files[0])
     var xhttp = new XMLHttpRequest();
     xhttp.open('post', url, true);
 
@@ -66,8 +65,6 @@ App.init = function () {
     xhttp.onreadystatechange = function (res) { // Call a function when the state changes.
       if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
         const res = JSON.parse(this.responseText);
-        //console.log(res.result.imgpath);
-        //document.getElementById("uploadedImg").src = res.result.img; 
         $(".output1").innerHTML = "Diagnosis: "
         $(".output").innerHTML = res.result.prediction;
       }
@@ -91,7 +88,6 @@ App.init = function () {
   };
 
   $("#drop").ondrop = evt => {
-    // $("input[type=file]").files = evt.dataTransfer.files;
     $("footer").classList.add("hasFiles");
     $("#drop").classList.remove("active");
 
