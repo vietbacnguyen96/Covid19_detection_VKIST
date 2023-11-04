@@ -27,7 +27,7 @@ def getOutput():
         imgpath = save_path + imgname
         myimage.save(os.path.join(app.config["Uploaded_images"], imgname))
         output = prediction.prediction(imgpath)
-        return jsonify({"result": {'message': 'okay', 'imgpath': imgpath, 'prediction' : output, 'img' : prediction.img2str(imgpath)}}), 200
+        return jsonify({"result": {'message': 'okay', 'imgpath': imgpath, 'prediction' : output}}), 200
   
 
 if __name__ == "__main__":
