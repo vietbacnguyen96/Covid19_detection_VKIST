@@ -9,6 +9,10 @@ app = Flask("__main__", template_folder="templates")
 Uploaded_images = "Uploaded_images"
 app.config['Uploaded_images'] = Uploaded_images
 
+save_path = 'Uploaded_images/'
+if not os.path.exists(save_path):
+    os.makedirs(save_path)
+
 @app.route('/', methods=['POST', 'GET'])
 def homepage():
   if request.method == 'GET':
@@ -20,7 +24,7 @@ def getOutput():
   if request.method == 'POST':
         myimage = request.files.get('myfile')
         imgname = secure_filename(myimage.filename)
-        imgpath = "Uploaded_images/"+imgname
+        imgpath = save_path + imgname
         myimage.save(os.path.join(app.config["Uploaded_images"], imgname))
         output = prediction.prediction(imgpath)
         return jsonify({"result": {'message': 'okay', 'imgpath': imgpath, 'prediction' : output, 'img' : prediction.img2str(imgpath)}}), 200
