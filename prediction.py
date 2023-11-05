@@ -4,7 +4,7 @@ import numpy as np
 import base64
 
 
-model = keras.models.load_model("model/CNN_Model.h5")
+model = keras.models.load_model("model/CNN_Model_2c.h5")
 resize = 150
 
 def preprocess_image(image):
