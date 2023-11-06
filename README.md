@@ -12,8 +12,8 @@ $
 $ mkdir model
 $ 
 $ # Get the weight and put it on folder model/
-$ wget https://github.com/vietbacnguyen96/Covid19_detection_VKIST/releases/download/v1.0.0/CNN_Model_2c.h5
-$ mv CNN_Model_2c.h5 model/
+$ wget https://github.com/vietbacnguyen96/Covid19_detection_VKIST/releases/download/v1.0.0/CNN_Model_2c_6_11_25_epoch.h5
+$ mv CNN_Model_2c_6_11_25_epoch.h5 model/
 $
 $ # Install modules
 $ pip3 install -r requirements.txt
