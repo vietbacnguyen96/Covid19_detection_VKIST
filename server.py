@@ -28,8 +28,35 @@ def getOutput():
         myimage.save(os.path.join(app.config["Uploaded_images"], imgname))
         output = prediction.prediction(imgpath)
         return jsonify({"result": {'message': 'okay', 'imgpath': imgpath, 'prediction' : output}}), 200
-  
+      
+@app.route('/getData', methods=[ 'POST', 'GET'])
+def getData():
+  if request.method == 'POST':
+
+    data = request.form  # Access form data sent in the request
+
+    # Accessing form data elements
+    filename = data.get('filename')
+    print(filename)
+    if 'img' not in request.files:
+        return 'No file part'
+
+    file = request.files['img']
+
+    if filename == '':
+        return 'No selected file'
+
+    if file:
+        # Read the uploaded image and print its shape
+        img = Image.open(io.BytesIO(file.read()))
+        # img_shape = img.size  # Getting the shape (width, height)
+
+        imgpath = save_path + filename
+        img.save(os.path.join(app.config["Uploaded_images"], filename))
+        output = prediction.prediction(imgpath)
+    return jsonify([{'prediction' : output}]), 200
+
 
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 3000)) #Define port so we can map container port to localhost
+    port = int(os.environ.get('PORT', 7002)) #Define port so we can map container port to localhost
     app.run(host='0.0.0.0', port=port, debug=True)  #Define 0.0.0.0 for Docker
